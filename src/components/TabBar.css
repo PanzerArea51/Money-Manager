@@ -1,0 +1,38 @@
+.tab-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.tab-bar__tab {
+  flex: 1;
+  min-width: var(--tap-size);
+  min-height: var(--tap-size);
+  padding: var(--space-2);
+  border: 0;
+  border-top: 4px solid transparent;
+  background: transparent;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+
+.tab-bar__tab:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: calc(var(--focus-width) * -1);
+}
+
+/* Non-color active marker: bold text and a top bar. */
+.tab-bar__tab--active {
+  border-top-color: var(--color-primary);
+  color: var(--color-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

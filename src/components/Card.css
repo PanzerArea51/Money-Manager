@@ -1,0 +1,22 @@
+.card {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: var(--card-padding);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+}
+
+.card--clickable {
+  min-height: var(--tap-size);
+  cursor: pointer;
+}
+
+.card--clickable:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
