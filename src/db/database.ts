@@ -75,6 +75,10 @@ export async function openFinanceDb(options: OpenFinanceDbOptions = {}): Promise
     throw new DbOpenError('IndexedDB is not available');
   }
 
+  // idb ignores the promise returned by `upgrade`, so a rethrown error would be
+  // an unhandled rejection. Record it, abort, and surface it as the cause instead.
+  let migrationError: unknown;
+
   try {
     return await openDB<FinanceSchema>(name, version, {
       async upgrade(db, oldVersion, newVersion, tx) {
@@ -86,8 +90,14 @@ export async function openFinanceDb(options: OpenFinanceDbOptions = {}): Promise
             await step(db, tx);
           }
         } catch (error) {
-          tx.abort();
-          throw error;
+          migrationError = error;
+          // tx.done rejects with AbortError; the open call reports the failure.
+          tx.done.catch(() => undefined);
+          try {
+            tx.abort();
+          } catch {
+            // Already finished or aborted.
+          }
         }
       },
       blocked() {
@@ -98,6 +108,6 @@ export async function openFinanceDb(options: OpenFinanceDbOptions = {}): Promise
       },
     });
   } catch (error) {
-    throw new DbOpenError('Could not open the database', error);
+    throw new DbOpenError('Could not open the database', migrationError ?? error);
   }
 }

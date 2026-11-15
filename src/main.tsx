@@ -1,6 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { FinanceProvider } from './hooks/FinanceProvider';
 import './styles/variables.css';
 import './styles/reset.css';
 import './styles/base.css';
@@ -12,6 +14,10 @@ if (container === null) {
 
 createRoot(container).render(
   <StrictMode>
-    <App />
+    <ErrorBoundary>
+      <FinanceProvider>
+        <App />
+      </FinanceProvider>
+    </ErrorBoundary>
   </StrictMode>,
 );

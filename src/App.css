@@ -1,0 +1,20 @@
+.app {
+  padding: var(--space-4);
+  /* Leave room for the fixed tab bar. */
+  padding-bottom: calc(var(--tap-size) + var(--space-4) * 2);
+}
+
+.app__title {
+  margin: 0 0 var(--space-4);
+}
+
+.app--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.app--blocking {
+  padding-bottom: var(--space-4);
+}

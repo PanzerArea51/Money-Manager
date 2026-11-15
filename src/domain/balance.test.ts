@@ -10,7 +10,15 @@ function acct(id: string, opening: number, archived = false): Account {
   return { id, name: id, type: 'cash', openingBalance: sen(opening), archived, createdAt: '2025-01-01T00:00:00.000Z' };
 }
 
-function tx(t: Partial<Transaction> & Pick<Transaction, 'kind'>, id = 't'): Transaction {
+/** Test overrides: any field of any transaction kind; the helper fills in the rest. */
+type TxOverrides = Pick<Transaction, 'kind'> & {
+  amount?: Sen;
+  accountId?: string;
+  fromAccountId?: string;
+  toAccountId?: string;
+};
+
+function tx(t: TxOverrides, id = 't'): Transaction {
   return {
     id,
     title: 'x',

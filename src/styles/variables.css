@@ -42,6 +42,9 @@
 
   /* Layout */
   --tap-size: 44px;
+  --fab-size: 56px;
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --shadow-fab: 0 2px 8px rgba(0, 0, 0, 0.3);
   --card-padding: 12px;
   --content-max-width: 960px;
 }

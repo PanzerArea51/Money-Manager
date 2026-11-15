@@ -36,3 +36,21 @@
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+
+@media (min-width: 768px) {
+  .tab-bar {
+    justify-content: center;
+  }
+  .tab-bar__tab {
+    flex: 0 1 var(--content-max-width);
+  }
+}
+
+@media (min-width: 768px) {
+  .tab-bar {
+    justify-content: center;
+  }
+  .tab-bar__tab {
+    flex: 0 1 var(--content-max-width);
+  }
+}

@@ -2,7 +2,8 @@ import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
 import { splitDate, weekday } from './date';
 import { localDate } from './testing/arbitraries';
-import { isWithin, periodFor } from './week';
+import type { PeriodUnit } from './types';
+import { isWithin, periodFor, shiftPeriod } from './week';
 
 const NUM_RUNS = 100;
 const MS_PER_DAY = 86_400_000;
@@ -34,6 +35,34 @@ describe('period properties', () => {
         expect(splitDate(month.start)).toEqual({ year, month: m, day: 1 });
         expect(splitDate(month.end)).toEqual({ year, month: m, day: lastDay });
         expect(isWithin(anchor, month)).toBe(true);
+      }),
+      { numRuns: NUM_RUNS },
+    );
+  });
+
+  // Feature: personal-finance-tracker, Property 21: Shifting a period is reversible and moves by one unit
+  // **Validates: Requirements 7.10, 8.4**
+  it('Property 21: shifting a period is reversible and moves by one unit', () => {
+    const unit = fc.constantFrom<PeriodUnit>('day', 'week', 'month');
+    fc.assert(
+      fc.property(unit, localDate, fc.constantFrom<-1 | 1>(-1, 1), (u, anchor, dir) => {
+        const p = periodFor(u, anchor);
+        const shifted = shiftPeriod(p, dir);
+        expect(shiftPeriod(shifted, dir === 1 ? -1 : 1)).toEqual(p);
+        expect(shifted.unit).toBe(u);
+
+        if (u === 'day') {
+          expect(daysBetween(p.start, shifted.start)).toBe(dir);
+        } else if (u === 'week') {
+          expect(daysBetween(p.start, shifted.start)).toBe(7 * dir);
+        } else {
+          const a = splitDate(p.start);
+          const b = splitDate(shifted.start);
+          expect(b.year * 12 + b.month - (a.year * 12 + a.month)).toBe(dir);
+          expect(b.day).toBe(1);
+          const lastDay = new Date(Date.UTC(b.year, b.month, 0)).getUTCDate();
+          expect(splitDate(shifted.end)).toEqual({ year: b.year, month: b.month, day: lastDay });
+        }
       }),
       { numRuns: NUM_RUNS },
     );

@@ -1,0 +1,38 @@
+.account-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.account-card__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.account-card__name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.account-card__type {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.account-card__balance {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.account-card__balance--negative {
+  color: var(--color-negative);
+}
+
+.account-card__error {
+  color: var(--color-negative);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}

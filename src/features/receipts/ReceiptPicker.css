@@ -1,0 +1,37 @@
+.receipt-picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.receipt-picker__label {
+  font-weight: 600;
+}
+
+.receipt-picker__input {
+  min-height: var(--tap-size);
+  font: inherit;
+  color: var(--color-text);
+}
+
+.receipt-picker__input:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.receipt-picker__status {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  overflow-wrap: anywhere;
+}
+
+.receipt-picker__error {
+  margin: 0;
+  color: var(--color-negative);
+  font-size: var(--font-size-sm);
+}
+
+.receipt-picker__actions {
+  display: flex;
+  gap: var(--space-2);
+}

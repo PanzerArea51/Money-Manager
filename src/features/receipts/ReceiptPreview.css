@@ -1,0 +1,24 @@
+.receipt-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.receipt-preview__image {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+.receipt-preview__status {
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.receipt-preview__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-size);
+  overflow-wrap: anywhere;
+}

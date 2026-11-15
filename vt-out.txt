@@ -1,0 +1,9 @@
+
+ RUN  v5.1.0 C:/Users/PanzerArea51/Desktop/kiro build 1
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  10:28:18
+   Duration  219ms (import 48%, tests 24%, transform 22%, worker 6%)
+

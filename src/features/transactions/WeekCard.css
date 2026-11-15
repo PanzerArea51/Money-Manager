@@ -1,0 +1,67 @@
+.week-card {
+  padding: var(--card-padding);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.week-card__heading {
+  margin: 0;
+  font-size: var(--font-size-md);
+}
+
+.week-card__toggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: var(--tap-size);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.week-card__toggle:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.week-card__range {
+  flex: 1 1 auto;
+  font-weight: 600;
+}
+
+.week-card__net {
+  font-variant-numeric: tabular-nums;
+}
+
+.week-card__net-label {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.week-card__net-value {
+  font-weight: 700;
+}
+
+.week-card__net-value--income {
+  color: var(--color-income);
+}
+
+.week-card__net-value--expense {
+  color: var(--color-expense);
+}
+
+.week-card__panel {
+  margin-top: var(--space-2);
+}
+
+.week-card__panel[hidden] {
+  display: none;
+}
