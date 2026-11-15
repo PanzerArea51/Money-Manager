@@ -1,0 +1,512 @@
+{
+  "pbtResults": {
+    "9.4 Write property test for stale cache selection": {
+      "status": "passed",
+      "lastRunTimestamp": 1794717437355
+    },
+    "9.3 Write property test for build version": {
+      "status": "passed",
+      "lastRunTimestamp": 1794717438008
+    }
+  },
+  "executionHistory": {
+    "1.1 Create `src/pwa/repoName.ts` and `src/pwa/basePath.ts`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716907334
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716917149
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717021921
+      }
+    ],
+    "1.2 Create `src/pwa/cacheNames.ts` and `src/pwa/requestRouting.ts`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716907454
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716917901
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717023062
+      }
+    ],
+    "1.3 Create `src/pwa/buildVersion.ts`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716907542
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716918439
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717024139
+      }
+    ],
+    "2.1 Implement `src/pwa/sw.ts`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716907638
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717034657
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717134860
+      }
+    ],
+    "2.2 Implement `src/pwa/swPlugin.ts`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716907705
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717035455
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717135376
+      }
+    ],
+    "3.1 Create `scripts/generate-icons.mjs` and generate the PNGs": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716907773
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717035999
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717136236
+      }
+    ],
+    "3.2 Create `public/manifest.webmanifest`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716907835
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717145675
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717190925
+      }
+    ],
+    "3.3 Update `index.html`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716907911
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717146641
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717190127
+      }
+    ],
+    "4.1 Implement `src/pwa/register.ts`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716907971
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717036555
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717136909
+      }
+    ],
+    "4.2 Implement `src/hooks/useServiceWorkerUpdate.ts`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908038
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717147285
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717192353
+      }
+    ],
+    "4.3 Implement `src/components/UpdatePrompt.tsx` and `UpdatePrompt.css`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908098
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717148363
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717191770
+      }
+    ],
+    "4.4 Wire the hook and prompt into `src/App.tsx`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908160
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717197175
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717264159
+      }
+    ],
+    "5.1 Update `vite.config.ts` and verify the build output": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908224
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717198402
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717264789
+      }
+    ],
+    "6. Checkpoint - App code complete": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908288
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717492356
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717571296
+      }
+    ],
+    "7.1 Create `.github/workflows/deploy.yml`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908355
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717276084
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717396660
+      }
+    ],
+    "8.1 Create `docs/DEPLOYMENT.md`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908419
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717276179
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717395895
+      }
+    ],
+    "8.2 Create `docs/INSTALL-ON-PHONE.md`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908481
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717276914
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717397328
+      }
+    ],
+    "9.1 Write unit tests for the pure helpers": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908550
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717277717
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717395109
+      }
+    ],
+    "9.2 Write property test for base path normalization": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908605
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717278438
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717395239
+      }
+    ],
+    "9.3 Write property test for build version": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908675
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717402381
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717455462
+      }
+    ],
+    "9.4 Write property test for stale cache selection": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908733
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717403065
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717456261
+      }
+    ],
+    "9.5 Write property test for request routing": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908800
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717403697
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717457044
+      }
+    ],
+    "9.6 Write unit tests for registration": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908874
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717404505
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717458092
+      }
+    ],
+    "9.7 Write the manifest and `index.html` test": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716908967
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717405216
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717458910
+      }
+    ],
+    "9.8 Write a minimal `UpdatePrompt` render test": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716909098
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717459672
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717487595
+      }
+    ],
+    "10. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794716909168
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717576313
+      },
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717603632
+      }
+    ],
+    "1. Pure helpers and constants": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717024216
+      }
+    ],
+    "2. Service worker and build plugin": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717135439
+      }
+    ],
+    "3. Manifest, icons and `index.html`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717190993
+      }
+    ],
+    "4. Registration and `UpdatePrompt`": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717264229
+      }
+    ],
+    "5. Vite base configuration": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717264852
+      }
+    ],
+    "7. GitHub Actions workflow": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717396725
+      }
+    ],
+    "8. Documentation": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717397391
+      }
+    ],
+    "9. Tests": [
+      {
+        "executionId": "389f7eff-5d7f-4d6b-86ec-ec427380f647",
+        "chatSessionId": "sess_b4b58186-9bb2-48bb-b916-4c39ad766281",
+        "timestamp": 1794717487664
+      }
+    ]
+  }
+}

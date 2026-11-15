@@ -6,6 +6,7 @@ import { Modal } from './components/Modal';
 import { PersistenceNotice } from './components/PersistenceNotice';
 import { TabBar } from './components/TabBar';
 import type { TabItem } from './components/TabBar';
+import { UpdatePrompt } from './components/UpdatePrompt';
 import type { Transaction } from './domain/types';
 import { AccountsView } from './features/accounts/AccountsView';
 import { ReceiptsView } from './features/receipts/ReceiptsView';
@@ -15,6 +16,7 @@ import { TransactionDetails } from './features/transactions/TransactionDetails';
 import { TransactionForm } from './features/transactions/TransactionForm';
 import { useFinance } from './hooks/FinanceProvider';
 import { useAccounts } from './hooks/useAccounts';
+import { useServiceWorkerUpdate } from './hooks/useServiceWorkerUpdate';
 import { useTransactions } from './hooks/useTransactions';
 import './App.css';
 
@@ -48,6 +50,7 @@ export function App() {
   const accounts = useAccounts();
   const { transactions, createTransaction, updateTransaction, deleteTransaction } = useTransactions();
   const [selection, setSelection] = useState<SelectionState>(null);
+  const { updateReady, apply, dismiss } = useServiceWorkerUpdate();
 
   if (status === 'fatal') {
     return (
@@ -93,6 +96,7 @@ export function App() {
     <>
       <main className="app">
         <PersistenceNotice denied={persistenceDenied} />
+        <UpdatePrompt visible={updateReady} onUpdate={apply} onDismiss={dismiss} />
         <h1 className="app__title">{tabLabel(activeTab)}</h1>
         <section aria-label={tabLabel(activeTab)}>
           {activeTab === 'accounts' ? (

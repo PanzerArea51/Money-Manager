@@ -10,7 +10,7 @@ PWA install and offline use were listed as "planned later" in the product rules.
 
 ### Assumptions and Open Items
 
-- **Repository name (open)**: The GitHub repository name is not yet confirmed. Until the user confirms it, the System uses the placeholder `REPO_NAME_PLACEHOLDER`, defined in a single configuration value. Replacing that one value is the only change needed to retarget the deployment subpath.
+- **Repository name (resolved)**: The user confirmed the GitHub repository `https://github.com/PanzerArea51/Money-Manager`. The repository name is `Money-Manager`, the Base_Path is `/Money-Manager/`, and the Pages_Site URL is `https://panzerarea51.github.io/Money-Manager/` (GitHub lowercases the username host and keeps the repository name case in the path). The name is defined in a single configuration value, so renaming the repository later requires changing only that value.
 - **Hosting type**: The site is a GitHub Pages project site served at `https://<user>.github.io/<repo-name>/`.
 - **No new dependencies**: The web app manifest and service worker are hand-written. `vite-plugin-pwa` and Workbox are not used unless the user approves them.
 - **Default branch**: The default branch is `main`.
@@ -68,13 +68,13 @@ PWA install and offline use were listed as "planned later" in the product rules.
 
 #### Acceptance Criteria
 
-1. THE App SHALL define the repository name in a single Repo_Name_Config value, with the initial value `REPO_NAME_PLACEHOLDER`.
+1. THE App SHALL define the repository name in a single Repo_Name_Config value, with the initial value `Money-Manager`.
 2. THE App SHALL derive the Vite `base` option from Repo_Name_Config as `/<repo-name>/`.
 3. WHEN the App runs under the Vite development server, THE App SHALL serve from the root path `/` so that local development does not require the Base_Path.
 4. WHEN the build runs, THE App SHALL emit asset URLs, the manifest link, the icon links, and the Service_Worker registration URL that all resolve under the Base_Path.
 5. THE Service_Worker registration SHALL set the Service_Worker scope to the Base_Path.
 6. WHEN Repo_Name_Config changes, THE App SHALL require no edit to any other source file to retarget the Base_Path.
-7. THE project documentation SHALL state that the repository name is unconfirmed and that Repo_Name_Config holds a placeholder until the User confirms it.
+7. THE project documentation SHALL state that Repo_Name_Config holds the repository name `Money-Manager` and that renaming the repository requires changing only that value.
 
 ### Requirement 4: Service Worker Offline Support
 
@@ -150,7 +150,7 @@ PWA install and offline use were listed as "planned later" in the product rules.
 3. THE setup guide SHALL describe how to confirm that the Deploy_Workflow succeeded in the Actions tab.
 4. THE setup guide SHALL state that a private repository requires a GitHub plan that supports Pages for private repositories, and that the published Pages_Site can be publicly reachable by URL.
 5. THE setup guide SHALL state that the Pages_Site contains no user data, because data stays on each device.
-6. THE setup guide SHALL list the repository name as an open item to confirm before the first deployment.
+6. THE setup guide SHALL state that the repository is `PanzerArea51/Money-Manager` and that the Pages_Site URL is `https://panzerarea51.github.io/Money-Manager/`.
 
 ### Requirement 9: Phone Installation Guide
 
