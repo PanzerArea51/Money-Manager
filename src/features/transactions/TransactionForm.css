@@ -1,0 +1,119 @@
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.transaction-form__kind {
+  display: flex;
+  gap: var(--space-2);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.transaction-form__kind legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+.transaction-form__kind-option {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap-size);
+  padding: 0 var(--space-3);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+.transaction-form__kind-option input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.transaction-form__kind-option:has(input:checked) {
+  font-weight: 700;
+}
+
+.transaction-form__kind-option--income:has(input:checked) {
+  border-color: var(--color-income);
+  color: var(--color-income);
+}
+
+.transaction-form__kind-option--expense:has(input:checked) {
+  border-color: var(--color-expense);
+  color: var(--color-expense);
+}
+
+/* Non-color marker for the selected type. */
+.transaction-form__kind-option:has(input:checked) span::before {
+  content: '\2713\00a0';
+}
+
+.transaction-form__kind-option:has(input:focus-visible) {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.transaction-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+  min-width: 0;
+}
+
+.transaction-form__field label {
+  font-weight: 600;
+}
+
+.transaction-form__field input,
+.transaction-form__field select {
+  min-height: var(--tap-size);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.transaction-form__field input:focus-visible,
+.transaction-form__field select:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.transaction-form__field input[aria-invalid='true'],
+.transaction-form__field select[aria-invalid='true'] {
+  border-color: var(--color-negative);
+  border-width: 2px;
+}
+
+.transaction-form__row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.transaction-form__error,
+.transaction-form__message {
+  margin: 0;
+  color: var(--color-negative);
+  font-size: var(--font-size-sm);
+}
+
+.transaction-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}

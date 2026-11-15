@@ -1,0 +1,30 @@
+/* Fixed above the tab bar (z-index 50, height --tap-size) and below modals (z-index 100). */
+.update-prompt {
+  position: fixed;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: calc(var(--tap-size) + var(--space-3));
+  z-index: 60;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--space-3);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-fab);
+}
+
+.update-prompt__message {
+  flex: 1 1 12rem;
+  margin: 0;
+}
+
+.update-prompt__actions {
+  display: flex;
+  gap: var(--space-2);
+}

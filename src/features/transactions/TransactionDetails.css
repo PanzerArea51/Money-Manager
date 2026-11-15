@@ -1,0 +1,78 @@
+.transaction-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.transaction-details__title {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.transaction-details__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.transaction-details__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.transaction-details__row dt {
+  font-weight: 600;
+}
+
+.transaction-details__row dd {
+  margin: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.transaction-details__amount {
+  font-weight: 700;
+}
+
+.transaction-details__amount--income {
+  color: var(--color-income);
+}
+
+.transaction-details__amount--expense {
+  color: var(--color-expense);
+}
+
+.transaction-details__error {
+  margin: 0;
+  color: var(--color-negative);
+  font-size: var(--font-size-sm);
+}
+
+.transaction-details__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.transaction-details__amount--transfer {
+  color: var(--color-transfer);
+}
+
+.transaction-details__receipt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.transaction-details__receipt-title {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 600;
+}
+
+.transaction-details__no-receipt {
+  margin: 0;
+}
