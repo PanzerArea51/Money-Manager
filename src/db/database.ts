@@ -1,9 +1,9 @@
 import { openDB } from 'idb';
 import type { DBSchema, IDBPDatabase, IDBPTransaction, StoreNames } from 'idb';
-import type { Account, Receipt, Transaction } from '../domain/types';
+import type { Account, Receipt, ShoppingList, Transaction } from '../domain/types';
 
 export const DB_NAME = 'finance-tracker';
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 
 export interface FinanceSchema extends DBSchema {
   accounts: {
@@ -18,6 +18,10 @@ export interface FinanceSchema extends DBSchema {
   receipts: {
     key: string;
     value: Receipt;
+  };
+  shoppingLists: {
+    key: string;
+    value: ShoppingList;
   };
 }
 
@@ -51,6 +55,9 @@ export const migrations: readonly (Migration | undefined)[] = [
     transactions.createIndex('date', 'date');
     transactions.createIndex('accountId', 'accountId');
     db.createObjectStore('receipts', { keyPath: 'id' });
+  },
+  (db) => {
+    db.createObjectStore('shoppingLists', { keyPath: 'id' });
   },
 ];
 

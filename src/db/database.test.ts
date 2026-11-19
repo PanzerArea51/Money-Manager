@@ -22,10 +22,15 @@ function account(id: string): Account {
 }
 
 describe('openFinanceDb', () => {
-  it('creates the three stores and indexes on a fresh database', async () => {
+  it('creates the stores and indexes on a fresh database', async () => {
     const db = await openFinanceDb({ name: uniqueName() });
     try {
-      expect([...db.objectStoreNames].sort()).toEqual(['accounts', 'receipts', 'transactions']);
+      expect([...db.objectStoreNames].sort()).toEqual([
+        'accounts',
+        'receipts',
+        'shoppingLists',
+        'transactions',
+      ]);
       const tx = db.transaction('transactions');
       expect([...tx.store.indexNames].sort()).toEqual(['accountId', 'date']);
       await tx.done;
@@ -46,11 +51,11 @@ describe('openFinanceDb', () => {
     };
     const v2 = await openFinanceDb({
       name,
-      version: 2,
+      version: 3,
       migrations: [...migrations, addAccount],
     });
     try {
-      expect(v2.version).toBe(2);
+      expect(v2.version).toBe(3);
       const ids = (await v2.getAllKeys('accounts')).sort();
       expect(ids).toEqual(['a1', 'a2', 'from-v2']);
       expect((await v2.get('accounts', 'a1'))?.name).toBe('Account a1');
@@ -70,7 +75,7 @@ describe('openFinanceDb', () => {
       throw new Error('boom');
     };
     await expect(
-      openFinanceDb({ name, version: 2, migrations: [...migrations, failing] }),
+      openFinanceDb({ name, version: 3, migrations: [...migrations, failing] }),
     ).rejects.toBeInstanceOf(DbOpenError);
 
     const again = await openFinanceDb({ name, version: 1 });

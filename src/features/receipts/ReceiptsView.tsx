@@ -3,8 +3,8 @@ import { Button } from '../../components/Button';
 import { EmptyState } from '../../components/EmptyState';
 import { Modal } from '../../components/Modal';
 import { formatMoney } from '../../domain/money';
-import type { ReceiptEntry } from '../../domain/receipts';
-import type { Transaction } from '../../domain/types';
+import type { ReceiptListEntry } from '../../domain/receipts';
+import type { ShoppingList, Transaction } from '../../domain/types';
 import { useReceipts } from '../../hooks/useReceipts';
 import { formatDisplayDate } from '../transactions/TransactionRow';
 import { ReceiptPreview } from './ReceiptPreview';
@@ -13,11 +13,22 @@ import './ReceiptsView.css';
 type ReceiptsViewProps = {
   /** Called to show the details of the transaction that owns a receipt. */
   onOpenTransaction: (transaction: Transaction) => void;
+  /** Called to show the shopping list that owns a receipt. */
+  onOpenShoppingList: (list: ShoppingList) => void;
 };
 
-export function ReceiptsView({ onOpenTransaction }: ReceiptsViewProps) {
-  const { status, receipts, reload } = useReceipts();
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+function metaText(entry: ReceiptListEntry): string {
+  const date = formatDisplayDate(entry.date);
+  if (entry.source === 'shopping') {
+    const price = entry.amount === undefined ? '' : ` \u00b7 ${formatMoney(entry.amount)}`;
+    return `Shopping list \u00b7 ${date}${price}`;
+  }
+  return `${date} \u00b7 ${formatMoney(entry.amount)}`;
+}
+
+export function ReceiptsView({ onOpenTransaction, onOpenShoppingList }: ReceiptsViewProps) {
+  const { status, entries, reload } = useReceipts();
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
 
   if (status === 'loading') {
     return (
@@ -34,27 +45,25 @@ export function ReceiptsView({ onOpenTransaction }: ReceiptsViewProps) {
       </div>
     );
   }
-  if (receipts.length === 0) {
-    return <EmptyState message="No receipts yet. Attach one to a transaction." />;
+  if (entries.length === 0) {
+    return <EmptyState message="No receipts yet. Attach one to a transaction or a shopping list." />;
   }
 
-  const selected: ReceiptEntry | undefined = receipts.find((r) => r.id === selectedId);
-  const close = () => setSelectedId(null);
+  const selected: ReceiptListEntry | undefined = entries.find((e) => e.key === selectedKey);
+  const close = () => setSelectedKey(null);
 
   return (
     <>
       <ul className="receipts-view__list">
-        {receipts.map((entry) => (
-          <li key={entry.id}>
+        {entries.map((entry) => (
+          <li key={entry.key}>
             <button
               type="button"
               className="receipts-view__item"
-              onClick={() => setSelectedId(entry.id)}
+              onClick={() => setSelectedKey(entry.key)}
             >
               <span className="receipts-view__title">{entry.title}</span>
-              <span className="receipts-view__meta">
-                {formatDisplayDate(entry.date)} &middot; {formatMoney(entry.amount)}
-              </span>
+              <span className="receipts-view__meta">{metaText(entry)}</span>
             </button>
           </li>
         ))}
@@ -67,10 +76,11 @@ export function ReceiptsView({ onOpenTransaction }: ReceiptsViewProps) {
               variant="secondary"
               onClick={() => {
                 close();
-                onOpenTransaction(selected);
+                if (selected.source === 'shopping') onOpenShoppingList(selected.list);
+                else onOpenTransaction(selected.transaction);
               }}
             >
-              View transaction
+              {selected.source === 'shopping' ? 'View shopping list' : 'View transaction'}
             </Button>
             <Button onClick={close}>Close</Button>
           </div>

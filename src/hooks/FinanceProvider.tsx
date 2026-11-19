@@ -8,13 +8,15 @@ import {
   useState,
 } from 'react';
 import type { ReactNode } from 'react';
-import type { Account, Transaction } from '../domain/types';
+import type { Account, ShoppingList, Transaction } from '../domain/types';
 import { openFinanceDb } from '../db/database';
 import type { FinanceDb } from '../db/database';
 import { createAccountRepo } from '../db/accountRepo';
 import type { AccountRepo } from '../db/accountRepo';
 import { createTransactionRepo } from '../db/transactionRepo';
 import type { TransactionRepo } from '../db/transactionRepo';
+import { createShoppingRepo } from '../db/shoppingRepo';
+import type { ShoppingRepo } from '../db/shoppingRepo';
 import { createReceiptRepo } from '../db/receiptRepo';
 import type { ReceiptRepo } from '../db/receiptRepo';
 import { useStoragePersistence } from './useStoragePersistence';
@@ -25,6 +27,7 @@ export type FinanceRepos = {
   accounts: AccountRepo;
   transactions: TransactionRepo;
   receipts: ReceiptRepo;
+  shopping: ShoppingRepo;
 };
 
 /**
@@ -36,12 +39,15 @@ export type FinanceActions = {
   removeAccount(id: string): void;
   upsertTransaction(transaction: Transaction): void;
   removeTransaction(id: string): void;
+  upsertShoppingList(list: ShoppingList): void;
+  removeShoppingList(id: string): void;
 };
 
 export type FinanceContextValue = {
   status: LoadStatus;
   accounts: Account[];
   transactions: Transaction[];
+  shoppingLists: ShoppingList[];
   persistenceDenied: boolean;
   /** `null` until the database has opened. */
   repos: FinanceRepos | null;
@@ -65,6 +71,7 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<LoadStatus>('loading');
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [shoppingLists, setShoppingLists] = useState<ShoppingList[]>([]);
   const [repos, setRepos] = useState<FinanceRepos | null>(null);
   const dbRef = useRef<FinanceDb | null>(null);
   const reposRef = useRef<FinanceRepos | null>(null);
@@ -87,6 +94,7 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
           accounts: createAccountRepo(db),
           transactions: createTransactionRepo(db),
           receipts: createReceiptRepo(db),
+          shopping: createShoppingRepo(db),
         };
         setRepos(reposRef.current);
       } catch {
@@ -98,13 +106,15 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
     try {
       const current = reposRef.current;
       if (current === null) return;
-      const [loadedAccounts, loadedTransactions] = await Promise.all([
+      const [loadedAccounts, loadedTransactions, loadedLists] = await Promise.all([
         current.accounts.list(),
         current.transactions.list(),
+        current.shopping.list(),
       ]);
       if (!isCurrent()) return;
       setAccounts(loadedAccounts);
       setTransactions(loadedTransactions);
+      setShoppingLists(loadedLists);
       setStatus('ready');
     } catch {
       if (isCurrent()) setStatus('error');
@@ -129,13 +139,24 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
       upsertTransaction: (transaction) =>
         setTransactions((list) => upsertById(list, transaction)),
       removeTransaction: (id) => setTransactions((list) => list.filter((t) => t.id !== id)),
+      upsertShoppingList: (list) => setShoppingLists((lists) => upsertById(lists, list)),
+      removeShoppingList: (id) => setShoppingLists((lists) => lists.filter((l) => l.id !== id)),
     }),
     [],
   );
 
   const value = useMemo<FinanceContextValue>(
-    () => ({ status, accounts, transactions, persistenceDenied, repos, reload: load, actions }),
-    [status, accounts, transactions, persistenceDenied, repos, load, actions],
+    () => ({
+      status,
+      accounts,
+      transactions,
+      shoppingLists,
+      persistenceDenied,
+      repos,
+      reload: load,
+      actions,
+    }),
+    [status, accounts, transactions, shoppingLists, persistenceDenied, repos, load, actions],
   );
 
   return <FinanceContext.Provider value={value}>{children}</FinanceContext.Provider>;
