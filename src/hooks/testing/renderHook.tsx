@@ -1,10 +1,11 @@
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import type { Account, Transaction } from '../../domain/types';
+import type { Account, ShoppingList, Transaction } from '../../domain/types';
 import { AccountInUseError, AccountNotFoundError } from '../../db/accountRepo';
 import type { AccountRepo } from '../../db/accountRepo';
 import type { TransactionRepo } from '../../db/transactionRepo';
 import type { ReceiptRepo } from '../../db/receiptRepo';
+import type { ShoppingRepo } from '../../db/shoppingRepo';
 import { FinanceContext } from '../FinanceProvider';
 import type { FinanceActions, FinanceContextValue, FinanceRepos, LoadStatus } from '../FinanceProvider';
 
@@ -20,12 +21,18 @@ export type FakeFinanceInit = {
   status?: LoadStatus;
   accounts?: Account[];
   transactions?: Transaction[];
+  shoppingLists?: ShoppingList[];
   repos?: Partial<FinanceRepos>;
 };
 
 export type FakeFinance = {
   /** Current fake state. Change it through `actions` or `set`. */
-  state: { status: LoadStatus; accounts: Account[]; transactions: Transaction[] };
+  state: {
+    status: LoadStatus;
+    accounts: Account[];
+    transactions: Transaction[];
+    shoppingLists: ShoppingList[];
+  };
   repos: FinanceRepos;
   /** The in-memory account repo, with a switch to make writes fail. */
   accountRepo: FakeAccountRepo;
@@ -93,17 +100,27 @@ const DEFAULT_TRANSACTION_REPO: TransactionRepo = {
 
 const DEFAULT_RECEIPT_REPO: ReceiptRepo = { get: async () => undefined };
 
+const DEFAULT_SHOPPING_REPO: ShoppingRepo = {
+  list: async () => [],
+  add: async () => unsupported('shopping.add'),
+  update: async () => unsupported('shopping.update'),
+  remove: async () => unsupported('shopping.remove'),
+  complete: async () => unsupported('shopping.complete'),
+};
+
 export function createFakeFinance(init: FakeFinanceInit = {}): FakeFinance {
   const state = {
     status: init.status ?? 'ready',
     accounts: init.accounts ?? [],
     transactions: init.transactions ?? [],
+    shoppingLists: init.shoppingLists ?? [],
   };
   const accountRepo = createFakeAccountRepo(state.accounts);
   const repos: FinanceRepos = {
     accounts: init.repos?.accounts ?? accountRepo,
     transactions: init.repos?.transactions ?? DEFAULT_TRANSACTION_REPO,
     receipts: init.repos?.receipts ?? DEFAULT_RECEIPT_REPO,
+    shopping: init.repos?.shopping ?? DEFAULT_SHOPPING_REPO,
   };
   const listeners = new Set<() => void>();
   const notify = () => listeners.forEach((l) => l());
@@ -128,6 +145,14 @@ export function createFakeFinance(init: FakeFinanceInit = {}): FakeFinance {
       state.transactions = state.transactions.filter((t) => t.id !== id);
       notify();
     },
+    upsertShoppingList(list) {
+      state.shoppingLists = upsert(state.shoppingLists, list);
+      notify();
+    },
+    removeShoppingList(id) {
+      state.shoppingLists = state.shoppingLists.filter((l) => l.id !== id);
+      notify();
+    },
   };
 
   return {
@@ -146,6 +171,7 @@ export function createFakeFinance(init: FakeFinanceInit = {}): FakeFinance {
       status: state.status,
       accounts: state.accounts,
       transactions: state.transactions,
+      shoppingLists: state.shoppingLists,
       persistenceDenied: false,
       repos,
       reload: async () => undefined,

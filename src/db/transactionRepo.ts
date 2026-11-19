@@ -22,7 +22,7 @@ export interface TransactionRepo {
   remove(id: string): Promise<void>;
 }
 
-function toReceipt(id: string, input: ReceiptInput): Receipt {
+export function toReceipt(id: string, input: ReceiptInput): Receipt {
   return {
     id,
     blob: input.blob,
@@ -32,7 +32,7 @@ function toReceipt(id: string, input: ReceiptInput): Receipt {
   };
 }
 
-function buildTransaction(
+export function buildTransaction(
   id: string,
   createdAt: string,
   receiptId: string | undefined,
@@ -59,7 +59,7 @@ function buildTransaction(
 }
 
 /** Aborts a transaction that may already have finished or aborted itself. */
-async function abortQuietly(tx: { abort(): void; done: Promise<void> }): Promise<void> {
+export async function abortQuietly(tx: { abort(): void; done: Promise<void> }): Promise<void> {
   try {
     tx.abort();
   } catch {

@@ -1,0 +1,98 @@
+.shopping-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.shopping-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.shopping-form__field label {
+  font-weight: 600;
+}
+
+.shopping-form__field input,
+.shopping-form__field select {
+  min-height: var(--tap-size);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.shopping-form__field input:focus-visible,
+.shopping-form__field select:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.shopping-form__field input[aria-invalid='true'],
+.shopping-form__field select[aria-invalid='true'] {
+  border-color: var(--color-negative);
+  border-width: 2px;
+}
+
+.shopping-form__add {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.shopping-form__add input {
+  flex: 1;
+  min-width: 0;
+}
+
+.shopping-form__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shopping-form__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.shopping-form__item-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.shopping-form__hint {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.shopping-form__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.shopping-form__error,
+.shopping-form__message {
+  margin: 0;
+  color: var(--color-negative);
+  font-size: var(--font-size-sm);
+}
+
+.shopping-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}

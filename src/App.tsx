@@ -7,9 +7,10 @@ import { PersistenceNotice } from './components/PersistenceNotice';
 import { TabBar } from './components/TabBar';
 import type { TabItem } from './components/TabBar';
 import { UpdatePrompt } from './components/UpdatePrompt';
-import type { Transaction } from './domain/types';
+import type { ShoppingList, Transaction } from './domain/types';
 import { AccountsView } from './features/accounts/AccountsView';
 import { ReceiptsView } from './features/receipts/ReceiptsView';
+import { ShoppingView } from './features/shopping/ShoppingView';
 import { CashFlowView } from './features/summary/CashFlowView';
 import { HistoryView } from './features/transactions/HistoryView';
 import { TransactionDetails } from './features/transactions/TransactionDetails';
@@ -20,16 +21,17 @@ import { useServiceWorkerUpdate } from './hooks/useServiceWorkerUpdate';
 import { useTransactions } from './hooks/useTransactions';
 import './App.css';
 
-type TabId = 'accounts' | 'history' | 'cashflow' | 'receipts';
+type TabId = 'accounts' | 'history' | 'cashflow' | 'shopping' | 'receipts';
 
 const TABS: readonly (TabItem & { id: TabId })[] = [
   { id: 'accounts', label: 'Accounts' },
   { id: 'history', label: 'History' },
   { id: 'cashflow', label: 'Cash Flow' },
+  { id: 'shopping', label: 'Shopping' },
   { id: 'receipts', label: 'Receipts' },
 ];
 
-/** The Receipts tab has no FAB. */
+/** The Shopping and Receipts tabs have no FAB. */
 const FAB_TABS: readonly TabId[] = ['accounts', 'history', 'cashflow'];
 
 type EntryState = 'closed' | 'form' | 'no-accounts';
@@ -50,6 +52,8 @@ export function App() {
   const accounts = useAccounts();
   const { transactions, createTransaction, updateTransaction, deleteTransaction } = useTransactions();
   const [selection, setSelection] = useState<SelectionState>(null);
+  /** Shopping list to open when the Shopping tab is shown from the Receipts tab. */
+  const [shoppingFocusId, setShoppingFocusId] = useState<string | null>(null);
   const { updateReady, apply, dismiss } = useServiceWorkerUpdate();
 
   if (status === 'fatal') {
@@ -105,9 +109,15 @@ export function App() {
             <HistoryView onSelectTransaction={(tx: Transaction) => setSelection({ id: tx.id, mode: 'details' })} />
           ) : activeTab === 'cashflow' ? (
             <CashFlowView />
+          ) : activeTab === 'shopping' ? (
+            <ShoppingView initialListId={shoppingFocusId} />
           ) : (
             <ReceiptsView
               onOpenTransaction={(tx: Transaction) => setSelection({ id: tx.id, mode: 'details' })}
+              onOpenShoppingList={(list: ShoppingList) => {
+                setShoppingFocusId(list.id);
+                setActiveTab('shopping');
+              }}
             />
           )}
         </section>
@@ -183,7 +193,9 @@ export function App() {
         tabs={TABS}
         activeId={activeTab}
         onSelect={(id) => {
-          if (isTabId(id)) setActiveTab(id);
+          if (!isTabId(id)) return;
+          setShoppingFocusId(null);
+          setActiveTab(id);
         }}
       />
     </>

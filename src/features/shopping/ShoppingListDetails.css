@@ -1,0 +1,103 @@
+.shopping-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.shopping-details__title {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.shopping-details__progress {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.shopping-details__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shopping-details__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--tap-size);
+  cursor: pointer;
+}
+
+.shopping-details__item input {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  margin: 0;
+}
+
+.shopping-details__item-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Crossed out and muted once bought; the checked box is the non-color cue. */
+.shopping-details__item--bought .shopping-details__item-name {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.shopping-details__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.shopping-details__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.shopping-details__row dt {
+  font-weight: 600;
+}
+
+.shopping-details__row dd {
+  margin: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.shopping-details__receipt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.shopping-details__receipt-title {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 600;
+}
+
+.shopping-details__none {
+  margin: 0;
+}
+
+.shopping-details__error {
+  margin: 0;
+  color: var(--color-negative);
+  font-size: var(--font-size-sm);
+}
+
+.shopping-details__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}

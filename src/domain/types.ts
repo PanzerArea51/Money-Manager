@@ -52,6 +52,33 @@ export type Receipt = {
   size: number;
 };
 
+export type ShoppingItem = { id: string; name: string; bought: boolean };
+
+export type ShoppingList = {
+  id: string;
+  title: string;
+  date: LocalDate;
+  items: ShoppingItem[];
+  /** Wallet the list is paid with. Informational: it does not create a transaction. */
+  accountId?: string;
+  /** Total price of the list. Informational: it does not change balances. */
+  price?: Sen;
+  /** Receipt stored in the shared `receipts` store; shown in the Receipts tab. */
+  receiptId?: string;
+  /** Expense transaction created by "Shopping complete". */
+  transactionId?: string;
+  createdAt: string;
+};
+
+/** Validated shopping list data, before the repository assigns id and createdAt. */
+export type ShoppingListInput = {
+  title: string;
+  date: LocalDate;
+  items: ShoppingItem[];
+  accountId?: string;
+  price?: Sen;
+};
+
 /** Validated account data, before the repository assigns id and createdAt. */
 export type AccountInput = {
   name: string;
