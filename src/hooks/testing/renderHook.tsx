@@ -175,6 +175,7 @@ export function createFakeFinance(init: FakeFinanceInit = {}): FakeFinance {
       persistenceDenied: false,
       repos,
       reload: async () => undefined,
+      resetAll: async () => undefined,
       actions,
     }),
   };

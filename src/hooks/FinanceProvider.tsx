@@ -52,6 +52,8 @@ export type FinanceContextValue = {
   /** `null` until the database has opened. */
   repos: FinanceRepos | null;
   reload(): Promise<void>;
+  /** Deletes every stored record and clears the displayed state. Throws if the write fails. */
+  resetAll(): Promise<void>;
   actions: FinanceActions;
 };
 
@@ -132,6 +134,22 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
     };
   }, [load]);
 
+  const resetAll = useCallback(async (): Promise<void> => {
+    const db = dbRef.current;
+    if (db === null) throw new Error('Database is not open');
+    const tx = db.transaction(['accounts', 'transactions', 'receipts', 'shoppingLists'], 'readwrite');
+    await Promise.all([
+      tx.objectStore('accounts').clear(),
+      tx.objectStore('transactions').clear(),
+      tx.objectStore('receipts').clear(),
+      tx.objectStore('shoppingLists').clear(),
+      tx.done,
+    ]);
+    setAccounts([]);
+    setTransactions([]);
+    setShoppingLists([]);
+  }, []);
+
   const actions = useMemo<FinanceActions>(
     () => ({
       upsertAccount: (account) => setAccounts((list) => upsertById(list, account)),
@@ -154,9 +172,10 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
       persistenceDenied,
       repos,
       reload: load,
+      resetAll,
       actions,
     }),
-    [status, accounts, transactions, shoppingLists, persistenceDenied, repos, load, actions],
+    [status, accounts, transactions, shoppingLists, persistenceDenied, repos, load, resetAll, actions],
   );
 
   return <FinanceContext.Provider value={value}>{children}</FinanceContext.Provider>;

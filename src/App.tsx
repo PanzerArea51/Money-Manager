@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from './components/Button';
+import { ConfirmDialog } from './components/ConfirmDialog';
 import { EmptyState } from './components/EmptyState';
 import { FloatingActionButton } from './components/FloatingActionButton';
 import { Modal } from './components/Modal';
@@ -46,7 +47,7 @@ function tabLabel(id: TabId): string {
 }
 
 export function App() {
-  const { status, reload, accounts: allAccounts, persistenceDenied } = useFinance();
+  const { status, reload, accounts: allAccounts, persistenceDenied, resetAll } = useFinance();
   const [activeTab, setActiveTab] = useState<TabId>('accounts');
   const [entry, setEntry] = useState<EntryState>('closed');
   const accounts = useAccounts();
@@ -54,6 +55,8 @@ export function App() {
   const [selection, setSelection] = useState<SelectionState>(null);
   /** Shopping list to open when the Shopping tab is shown from the Receipts tab. */
   const [shoppingFocusId, setShoppingFocusId] = useState<string | null>(null);
+  const [confirmingReset, setConfirmingReset] = useState(false);
+  const [resetError, setResetError] = useState(false);
   const { updateReady, apply, dismiss } = useServiceWorkerUpdate();
 
   if (status === 'fatal') {
@@ -121,7 +124,44 @@ export function App() {
             />
           )}
         </section>
+        <div className="app__reset">
+          {resetError ? <p role="alert">Reset failed. Your data was not changed.</p> : null}
+          <Button
+            variant="danger"
+            onClick={() => {
+              setResetError(false);
+              setConfirmingReset(true);
+            }}
+          >
+            Reset
+          </Button>
+        </div>
       </main>
+      {confirmingReset ? (
+        <ConfirmDialog
+          title="Reset app?"
+          itemName="All accounts, transactions, receipts and shopping lists"
+          message="This permanently deletes all data and cannot be undone. Are you sure?"
+          confirmLabel="Yes, delete everything"
+          destructive
+          onCancel={() => setConfirmingReset(false)}
+          onConfirm={() => {
+            resetAll().then(
+              () => {
+                setConfirmingReset(false);
+                setSelection(null);
+                setEntry('closed');
+                setShoppingFocusId(null);
+                setActiveTab('accounts');
+              },
+              () => {
+                setConfirmingReset(false);
+                setResetError(true);
+              },
+            );
+          }}
+        />
+      ) : null}
       {showFab ? (
         <FloatingActionButton
           label="Add transaction"
